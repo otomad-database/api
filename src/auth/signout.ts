@@ -8,7 +8,7 @@ export const handlerSignout = (): Middleware => async (ctx) => {
   ctx.cookies.set("otmd-session", "", {
     httpOnly: true,
     secure: ctx.secure,
-    sameSite: "strict",
+    sameSite: "none",
   });
   ctx.body = {};
 };

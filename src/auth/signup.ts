@@ -74,7 +74,7 @@ export const handlerSignup =
     ctx.cookies.set("otmd-session", `${session.id}-${session.secret}`, {
       httpOnly: true,
       secure: ctx.secure,
-      sameSite: "strict",
+      sameSite: "none",
     });
     ctx.body = { id: user.id };
   };
