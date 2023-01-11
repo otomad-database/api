@@ -1,15 +1,33 @@
-import { User } from "../../db/entities/users.js";
+import { UserRole } from "../../db/entities/users.js";
 
 export class UserModel {
-  public id;
-  public name;
-  public displayName;
-  public icon;
+  constructor(
+    private readonly entity: {
+      id: string;
+      name: string;
+      displayName: string;
+      icon: string | null;
+      role: UserRole;
+    }
+  ) {}
 
-  constructor(private readonly user: User) {
-    this.id = user.id;
-    this.name = user.name;
-    this.displayName = user.displayName;
-    this.icon = user.icon;
+  get id() {
+    return this.entity.id;
+  }
+
+  get name() {
+    return this.entity.name;
+  }
+
+  get displayName() {
+    return this.entity.displayName;
+  }
+
+  get icon() {
+    return this.entity.icon;
+  }
+
+  get role() {
+    return this.entity.role;
   }
 }

@@ -8,6 +8,9 @@ type User implements Node {
   mylist(id: ID!): Mylist
 
   mylists(input: UserMylistsInput!): MylistConnection!
+
+  isEditor: Boolean!
+  isAdministrator: Boolean!
 }
 
 input UserMylistsInput {

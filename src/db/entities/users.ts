@@ -3,6 +3,12 @@ import { type Relation } from "typeorm";
 
 import { Session } from "./sessions.js";
 
+export enum UserRole {
+  NORMAL = "NORMAL",
+  EDITOR = "EDITOR",
+  ADMINISTRATOR = "ADMINISTRATOR",
+}
+
 @Entity("users")
 export class User {
   @PrimaryColumn("varchar", { length: 26 })
@@ -34,4 +40,7 @@ export class User {
 
   @OneToMany((_type) => Session, (session) => session.user)
   sessions!: Relation<Session[]>;
+
+  @Column("enum", { enum: UserRole, default: UserRole.NORMAL })
+  role!: UserRole;
 }

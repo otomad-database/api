@@ -2,6 +2,7 @@ import { GraphQLError } from "graphql";
 import { DataSource, In } from "typeorm";
 
 import { Mylist, MylistShareRange } from "../../db/entities/mylists.js";
+import { UserRole } from "../../db/entities/users.js";
 import { MylistShareRange as GraphQLMylistShareRange, Resolvers } from "../../graphql.js";
 import { buildGqlId, parseGqlID } from "../../utils/id.js";
 import { MylistModel } from "../Mylist/model.js";
@@ -63,4 +64,7 @@ export const resolveUser = ({ dataSource: ds }: { dataSource: DataSource }) =>
         nodes,
       };
     },
+
+    isEditor: ({ role }) => role === UserRole.EDITOR || role === UserRole.ADMINISTRATOR,
+    isAdministrator: ({ role }) => role === UserRole.ADMINISTRATOR,
   } satisfies Resolvers["User"]);
